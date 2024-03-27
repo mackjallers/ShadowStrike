@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content="30;url=/checking">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monero Invoice</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212;
+            color: lime;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #111;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.2);
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            border: 2px dashed lime;
+            padding: 10px;
+            margin-top: 20px; /* Adjusted margin-top instead of margin-bottom for spacing */
+            word-wrap: break-word;
+        }
+        .invoice-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .toggle + label {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #0f0;
+            color: #000;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            margin: 20px auto 10px; /* Providing spacing above the toggle */
+        }
+        .toggle:checked + label:hover,
+        .toggle + label:hover {
+            background-color: #1fa11f;
+        }
+        .toggle {
+            display: none;
+        }
+        .toggle:checked ~ .monero-uri-container,
+        .qrcode {
+            display: block; 
+            margin: 10px auto;
+            max-width: 80%;
+        }
+        .toggle:checked ~ .info-box,
+        .toggle:not(:checked) ~ .monero-uri-container {
+            display: none;
+        }
+        .monero-uri-container {
+            background-color: rgba(17, 17, 17, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            word-wrap: break-word;
+        }
+        .time-left {
+            color: red; /* Red color for time left */
+            margin-bottom: 10px; /* Positioned above the toggle button */
+            font-size: 15px; /* Larger font size for emphasis */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monero Invoice</h1>
+
+        <p class="time-left">Time Left: <span>{{ remaining_minutes }} minutes, {{ remaining_seconds }} seconds</span></p>
+
+        <!-- Toggle button at the top -->
+        <input type="checkbox" id="toggleView" class="toggle">
+        <label for="toggleView">Toggle Details</label>
+
+        <!-- Fixed Position QR Code -->
+        <img src="data:image/png;base64,{{ monero_qr_code }}" alt="Monero QR Code" class="qrcode">
+        
+        <!-- Monero URI container, shown or hidden based on the toggle -->
+        <div class="monero-uri-container">
+            {{ monero_uri }}
+        </div>
+
+        <!-- Info box for subaddress and amount, shown or hidden based on toggle -->
+        <div class="info-box">
+            <p>Subaddress: <span>{{ monero_invoice.subaddress }}</span></p>
+            <p>Amount Due: <span>{{ monero_invoice.xmr_amount_with_fee }}</span></p>
+            <!-- New Line: Display Total Amount Received -->
+        </div>
+
+        <div class="status-info">
+            <p class="balance">Balance: <span>{{ balance }}</span></p>
+        </div>
+    </div>
+</body>
+</html>

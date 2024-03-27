@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Shadow Strike</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212;
+            color: lime;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #111;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.2);
+            padding: 20px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .message-box {
+            background-color: #111;
+            padding: 15px;
+            word-wrap: break-word;
+        }
+        .button {
+            padding: 10px 15px;
+            background-color: #0f0;
+            color: #000;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from link */
+            display: inline-block; /* Required for padding and width to take effect */
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #1fa11f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error</h1>
+        <div class="message-box">
+            <p>{{ error_message }}</p> <!-- This is where you inject the error message dynamically -->
+        </div>
+        <a href="/" class="button">Start Over</a> <!-- Changed to <a> but styled as .button -->
+</div>
+</body>
+</html>
+

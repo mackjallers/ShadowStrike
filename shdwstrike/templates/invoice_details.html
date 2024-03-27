@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Strike</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212; /* Dark background */
+            color: lime; /* Lime text for that cyberpunk feel */
+            text-align: center;
+            margin: 0;
+            padding: 20px; /* Consistent padding */
+        }
+        .container {
+            width: 90%;
+            max-width: 600px; /* Matching max-width */
+            margin: 50px auto;
+            background-color: #111; /* Darker box for contrast */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.2); /* Lime glow */
+            padding: 20px;
+        }
+        .data-box, .amounts-container {
+
+            border: none; 
+            padding: 10px;
+            margin-bottom: 20px;
+            word-wrap: break-word; /* For long texts */
+        }
+        .box {
+            margin: 10px auto; /* Center box */
+            padding: 15px; /* Spacing inside box */
+            background-color: #111; /* Dark background within box */
+            border: 1px solid lime; /* Keeping existing border styling for inner box */
+            overflow-y: auto;
+            max-height: 200px;
+            word-wrap: break-word; /* Ensure text doesn't overflow */
+        }
+        .box-line {
+            display: block;
+            margin-bottom: 5px;
+        }
+        h1 {
+            font-size: 28px; /* Slightly larger for emphasis */
+            margin-bottom: 20px;
+        }
+        p, .box-line {
+            font-size: 18px; /* Consistent font size */
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #0f0; /* Bright green */
+            color: #000; /* Text color */
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        button:hover {
+            background-color: #1fa11f; /* Darker on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quote</h1>
+        <div class="data-box">
+            <p><strong>LN Invoice:</strong></p>
+            <div class="box">
+                <!-- Assuming dynamic content generation, placeholder for loop -->
+                {% for line in decoded_info.invoice_lines %}
+                    <span class="box-line">{{ line }}</span>
+                {% endfor %}
+            </div>
+            
+            <p><strong>Refund Address:</strong></p>
+            <div class="box">
+                <!-- Placeholder for refund address -->
+                <span class="box-line">{{ refund_address }}</span>
+            </div>
+
+            <div class="amounts-container">
+                <!-- Placeholders for dynamic amount data -->
+                <p><strong>BTC Amount:</strong> {{ decoded_info.amount_btc }}</p>
+                <p><strong>XMR Equivalent:</strong> {{ decoded_info.equivalent_xmr_with_fee }}</p>
+            </div>
+        </div>
+        <div>
+            <button type="submit" form="acceptForm">Accept</button>
+            <button type="submit" form="rejectForm">Reject</button>
+        </div>
+        <form id="acceptForm" action="/invoice" method="post" style="display: none;"></form>
+        <form id="rejectForm" action="/reject_rate" method="post" style="display: none;"></form>
+    </div>
+</body>
+</html>

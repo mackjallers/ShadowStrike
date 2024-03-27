@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Strike</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212; /* Consistent dark background */
+            color: lime; /* Neon lime text */
+            text-align: center;
+            margin: 0;
+            padding: 0; /* Removed padding to allow full height usage */
+            display: flex; /* Enable flex container */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Minimum height to fill the viewport */
+        }
+        .container {
+            width: 90%;
+            max-width: 600px; /* Consistent sizing with other designs */
+            background-color: #111; /* Slightly off-black background for container */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.2); /* Lime glow for 3D effect */
+            padding: 20px; /* Padding inside container */
+            position: relative;
+        }
+        h1 {
+            font-size: 28px; /* Matching size from other pages */
+            color: lime; /* Keeping consistency with neon theme */
+            margin-bottom: 20px; /* Spacing below the header */
+        }
+        input[type="text"] {
+            background-color: #121212; /* Matching input background to body */
+            border: 2px solid lime; /* Neon lime border */
+            color: lime; /* Lime text color for consistency */
+            padding: 10px;
+            border-radius: 10px; /* Increased radius for more pronounced rounding */
+            width: calc(100% - 22px); /* Adjust width to account for padding and border */
+            margin-bottom: 20px; /* Consistent bottom margin */
+        }
+        button {
+            padding: 10px 15px; /* Adjusted padding for consistency */
+            background-color: lime; /* Neon lime background */
+            color: #000; /* Black text for readability */
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px; /* Consistent border-radius with inputs */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+        }
+        button:hover {
+            background-color: #121212; /* Match body background */
+            color: lime; /* Hover effect to switch to lime text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pay A Bitcoin Lightning Invoice With Monero</h1>
+        <form action="/quote" method="post">
+            <input type="text" id="invoice" name="invoice" placeholder="Enter BTC Lightning Invoice" required>
+            <input type="text" id="refund_address" name="refund_address" placeholder="Enter XMR Refund Address" required>
+            <input type="hidden" name="session_id" value="{{ session_id }}">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
